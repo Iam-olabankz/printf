@@ -12,7 +12,7 @@
  * Return: Number of chars printed
  */
 int print_char(va_list types, char buffer[],
-             int flags, int width, int precision, int size)
+int flags, int width, int precision, int size)
 {
 	char c = va_arg(types, int);
 
@@ -31,7 +31,7 @@ int print_char(va_list types, char buffer[],
  * Return: Number of chars printed
  */
 int print_string(va_list types, char buffer[],
-                int flags, int width, int precision, int size)
+int flags, int width, int precision, int size)
 {
 	char *str = va_arg(types, char *);
 	int length = 0, i;
@@ -81,7 +81,7 @@ int print_string(va_list types, char buffer[],
  * Return: Number of chars printed
  */
 int print_percent(va_list types, char buffer[],
-                  int flags, int width, int precision, int size)
+int flags, int width, int precision, int size)
 {
 	UNUSED(types);
 	UNUSED(buffer);
