@@ -25,7 +25,7 @@ int print_s(char *s)
  * _putchar - writes a character to stdout
  * @c: the character to write
  *
- * Return: On success 1, on error, -1 is returned, and errno is set appropriately.
+ * Return: On success 1, on error, and errno is set appropriately.
  */
 int _putchar(char c)
 {
