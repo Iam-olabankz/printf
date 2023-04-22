@@ -3,7 +3,7 @@
 #include <stdarg.h>
 
 /**
- * print_s - prints a string to stdout
+ * print_s - prints a string
  * @s: the string to print
  *
  * Return: the number of characters printed
@@ -12,7 +12,7 @@ int print_s(char *s)
 {
 	int i = 0;
 
-	while (s && s[i])
+	while (s[i])
 	{
 		_putchar(s[i]);
 		i++;
@@ -23,9 +23,9 @@ int print_s(char *s)
 
 /**
  * _putchar - writes a character to stdout
- * @c: the character to print
+ * @c: the character to write
  *
- * Return: 1 on success, -1 on error
+ * Return: On success 1, on error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c)
 {
@@ -35,7 +35,6 @@ int _putchar(char c)
 /**
  * _printf - prints output according to a format
  * @format: the format string
- * @...: the optional arguments to print
  *
  * Return: the number of characters printed
  */
@@ -73,12 +72,13 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			count += _putchar(format[i]);
+			_putchar(format[i]);
+			count++;
 			i++;
 		}
 	}
-	va_end(args);
 
+	va_end(args);
 	return (count);
 }
 
