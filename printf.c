@@ -1,18 +1,18 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdarg.h>
+
 /**
- * _printf - prints output according to a format
- * @format: the format string
+ * print_s - prints a string to stdout
+ * @s: the string to print
  *
  * Return: the number of characters printed
  */
-
 int print_s(char *s)
 {
 	int i = 0;
 
-	while (s[i])
+	while (s && s[i])
 	{
 		_putchar(s[i]);
 		i++;
@@ -20,14 +20,27 @@ int print_s(char *s)
 
 	return (i);
 }
+
+/**
+ * _putchar - writes a character to stdout
+ * @c: the character to print
+ *
+ * Return: 1 on success, -1 on error
+ */
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
+/**
+ * _printf - prints output according to a format
+ * @format: the format string
+ * @...: the optional arguments to print
+ *
+ * Return: the number of characters printed
+ */
 int _printf(const char *format, ...)
 {
-
 	va_list args;
 	int i = 0, count = 0;
 
@@ -40,35 +53,32 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == 'c')
 			{
-				i++;
-				if (format[i] == 'c')
-				{
-					count += _putchar(va_arg(args, int));
-				}
-				else if (format[i] == 's')
-				{
-					count += print_s(va_arg(args, char *));
-				}
-				else if (format[i] == '%')
-				{
-					count += _putchar('%');
-				}
-				else
-				{
-					_putchar('%');
-					_putchar(format[i]);
-					count += 2;
-				}
+				count += _putchar(va_arg(args, int));
+			}
+			else if (format[i] == 's')
+			{
+				count += print_s(va_arg(args, char *));
+			}
+			else if (format[i] == '%')
+			{
+				count += _putchar('%');
 			}
 			else
 			{
+				_putchar('%');
 				_putchar(format[i]);
-				count++;
+				count += 2;
 			}
 			i++;
 		}
-		va_end(args);
-
-		return (count);
+		else
+		{
+			count += _putchar(format[i]);
+			i++;
+		}
 	}
+	va_end(args);
+
+	return (count);
+}
 
